@@ -23,7 +23,6 @@ function loadMessages(from ,to, socket){
 }
 function messageResponse(from ,to, socket){
   const senderSocketID=socket.id
-  console.log(messages?.filter(message=>(message.socketID==from &&message.to==to )||(message.socketID==to &&message.to==from )))
   socket.emit("chatHistory",{messages:messages?.filter(message=>(message.socketID==from &&message.to==to )||(message.socketID==to &&message.to==from )), otherPerson:to,mode:'sender'})
   socket.to(to).emit("chatHistory",{messages:messages?.filter(message=>(message.socketID==from &&message.to==to )||(message.socketID==to &&message.to==from )), otherPerson:senderSocketID})
 }
